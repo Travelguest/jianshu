@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./common/header/index";
+import { IconfontStyles } from "./statics/iconfont/iconfont";
+import { Provider } from "react-redux";
+import store from "./store";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* 引入组件时要大写字母开头！ */}
+      <IconfontStyles></IconfontStyles>
+      {/* 将Store提供给Header组件使用 */}
+      <Provider store={store}>
+        <Header />
+      </Provider>
     </div>
   );
 }
