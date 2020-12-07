@@ -1,2 +1,4 @@
 # jianshu
-用React实现简书网站
+
+用 React 实现简书网站
+——by Dai Yong
