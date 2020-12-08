@@ -22,7 +22,7 @@ export const Logo = styled.a.attrs({
   width: 100px;
   margin: 0 auto;
   background: url(${logoPic});
-  background-size: contain; //查一查
+  background-size: contain; //contain:保持图像的纵横比并将图像缩放成将适合背景定位区域的最大大小。
 `;
 
 export const Nav = styled.div`
@@ -107,6 +107,41 @@ export const NavSearch = styled.input.attrs({
   &.slide-exit-active {
     width: 178px;
   }
+`;
+export const SearchInfo = styled.div`
+  position: absolute;
+  top: 56px;
+  left: 25px;
+  width: 240px;
+  padding: 0 20px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+`;
+
+export const SearchInfoTitle = styled.div`
+  margin-top: 20px;
+  margin-bottom: 15px;
+  color: #787878;
+  font-size: 15px;
+`;
+
+export const SearchInfoSwitch = styled.span`
+  font-size: 14px;
+  float: right;
+`;
+export const SearchInfoList = styled.div`
+  overflow: hidden;
+`;
+export const SearchInfoItem = styled.a`
+  float: left;
+  display: block;
+  padding: 0px 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  line-height: 20px;
+  font-size: 13px;
+  color: #787878;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 `;
 
 export const Addition = styled.div`
