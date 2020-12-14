@@ -22,19 +22,46 @@ import { actionCreator } from "./store";
 class Header extends Component {
   //本组件中的方法，用this.方法名调用
   showSearchInfoList() {
-    if (this.props.focus) {
+    const {
+      focus,
+      list,
+      page,
+      totalPages,
+      mouseIn,
+      handleMouseEnter,
+      handleMouseLeave,
+      handleChangePage,
+    } = this.props;
+    const newList = list.toJS();
+    const pageList = [];
+    if (newList.length) {
+      for (let i = (page - 1) * 10; i <= page * 10; i++) {
+        pageList.push(
+          <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
+        );
+      }
+    }
+    if (focus || mouseIn) {
       return (
-        <SearchInfo>
+        <SearchInfo
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <SearchInfoTitle>
             热门搜索
-            <SearchInfoSwitch>换一批</SearchInfoSwitch>
+            <SearchInfoSwitch
+              onClick={() => handleChangePage(page, totalPages)}
+            >
+              换一批
+            </SearchInfoSwitch>
           </SearchInfoTitle>
           <SearchInfoList>
             {/* immutable数组也有map方法 */}
-            {this.props.list.map((item) => {
+            {/* {list.map((item) => {
               // 箭头函数别忘记return !否则无效
               return <SearchInfoItem key={item}>{item}</SearchInfoItem>;
-            })}
+            })} */}
+            {pageList};
           </SearchInfoList>
         </SearchInfo>
       );
@@ -44,6 +71,7 @@ class Header extends Component {
   }
 
   render() {
+    const { focus, handleInputFocus, handleInputBlur } = this.props;
     return (
       <HeaderWrapper>
         <Logo />
@@ -62,21 +90,15 @@ class Header extends Component {
             <span className="iconfont">&#xe636;</span>
           </NavItem>
           <NavSearchWrapper>
-            <CSSTransition
-              in={this.props.focus}
-              timeout={300}
-              classNames="slide"
-            >
+            <CSSTransition in={focus} timeout={300} classNames="slide">
               <NavSearch
-                className={this.props.focus ? "focused" : ""}
-                onFocus={this.props.handleInputFocus}
-                onBlur={this.props.handleInputBlur}
+                className={focus ? "focused" : ""}
+                onFocus={handleInputFocus}
+                onBlur={handleInputBlur}
               ></NavSearch>
             </CSSTransition>
             {/* 动画只用于NavSearch中，并不包括iconfont！ */}
-            <span
-              className={this.props.focus ? "focused iconfont" : "iconfont"}
-            >
+            <span className={focus ? "focused iconfont" : "iconfont"}>
               &#xe783;
             </span>
             {this.showSearchInfoList()}
@@ -104,6 +126,9 @@ const mapStateToProps = (state) => {
     //focus: state.header.get("focus"), //store的state传递到了该组件的props
 
     list: state.getIn(["header", "list"]),
+    page: state.getIn(["header", "page"]),
+    totalPages: state.getIn(["header", "totalPages"]),
+    mouseIn: state.getIn(["header", "mouseIn"]),
   };
 };
 
@@ -115,6 +140,20 @@ const mapDispatchToProps = (dispatch) => {
     },
     handleInputBlur() {
       dispatch(actionCreator.searchBlur());
+    },
+    handleMouseEnter() {
+      dispatch(actionCreator.mouseEnter());
+    },
+
+    handleMouseLeave() {
+      dispatch(actionCreator.mouseLeave());
+    },
+    handleChangePage(page, totalPages) {
+      if (page < totalPages) {
+        dispatch(actionCreator.changePage(page + 1));
+      } else {
+        dispatch(actionCreator.changePage(1));
+      }
     },
   };
 };
