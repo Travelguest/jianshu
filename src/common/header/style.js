@@ -54,7 +54,7 @@ export const NavSearchWrapper = styled.div`
   float: left;
   position: relative;
 
-  .iconfont {
+  .zoom {
     //这里className = iconfont的标签是其子代，不能用&
     position: absolute; //absolute的定位是相对于离自己最近的设置了相对/绝对position的父元素
     right: 5px;
@@ -127,6 +127,14 @@ export const SearchInfoTitle = styled.div`
 export const SearchInfoSwitch = styled.span`
   font-size: 14px;
   float: right;
+  .spin {
+    display: block;
+    float: left;
+    font-size: 16px;
+    margin-right: 3px;
+    transition: all 0.2s ease-in-out;
+    transform-origin: center center;
+  }
 `;
 export const SearchInfoList = styled.div`
   overflow: hidden;
