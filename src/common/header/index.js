@@ -81,7 +81,7 @@ class Header extends Component {
   }
 
   render() {
-    const { focus, handleInputFocus, handleInputBlur } = this.props;
+    const { focus, handleInputFocus, handleInputBlur, list } = this.props;
     return (
       <HeaderWrapper>
         <Logo />
@@ -103,7 +103,7 @@ class Header extends Component {
             <CSSTransition in={focus} timeout={300} classNames="slide">
               <NavSearch
                 className={focus ? "focused" : ""}
-                onFocus={handleInputFocus}
+                onFocus={() => handleInputFocus(list)}
                 onBlur={handleInputBlur}
               ></NavSearch>
             </CSSTransition>
@@ -144,8 +144,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleInputFocus() {
-      dispatch(actionCreator.searchList());
+    handleInputFocus(list) {
+      list.size === 0 && dispatch(actionCreator.searchList()); //优化性能：axios请求，初始化时只申请一次即可！
       dispatch(actionCreator.searchFocus());
     },
     handleInputBlur() {
