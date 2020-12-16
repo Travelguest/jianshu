@@ -11,7 +11,7 @@ class Topic extends Component {
           return (
             //   return的是<TopicItem>一个整体，一起return
             <TopicItem key={item.get("id")}>
-              <img className="topic-pic" src={item.get("imgURL")}></img>
+              <img className="topic-pic" alt="" src={item.get("imgURL")}></img>
               {item.get("text")}
             </TopicItem>
           );

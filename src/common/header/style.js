@@ -115,6 +115,7 @@ export const SearchInfo = styled.div`
   width: 240px;
   padding: 0 20px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  background: #ffffff;
 `;
 
 export const SearchInfoTitle = styled.div`
@@ -127,6 +128,7 @@ export const SearchInfoTitle = styled.div`
 export const SearchInfoSwitch = styled.span`
   font-size: 14px;
   float: right;
+  cursor: pointer;
   .spin {
     display: block;
     float: left;

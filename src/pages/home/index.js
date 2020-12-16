@@ -13,6 +13,7 @@ class Home extends Component {
           <HomeLeft>
             <img
               className="banner-img"
+              alt=""
               src="https://img.dpm.org.cn/Uploads/Picture/2020/08/05/s5f2a7535e4f17.jpg"
             ></img>
             <Topic />

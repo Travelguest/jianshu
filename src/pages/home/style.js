@@ -29,6 +29,7 @@ export const TopicWrapper = styled.div`
   padding: 20px 0 10px 0;
   overflow: hidden;
   margin-left: -18px; //外层整体左移18px,内部左边间距18px,能使得各块之间保持相同间距
+  border-bottom: 1px solid #dcdcdc;
 `;
 
 export const TopicItem = styled.div`
@@ -49,5 +50,58 @@ export const TopicItem = styled.div`
     width: 32px;
     height: 32px;
     margin-right: 10px;
+  }
+`;
+
+export const ListItem = styled.div`
+  padding: 15px 0 20px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #dcdcdc;
+  overflow: hidden;
+  .pig {
+    display: block;
+    width: 150px;
+    height: 100px;
+    float: right;
+    border-radius: 4px;
+  }
+`;
+
+export const ListInfo = styled.div`
+  width: 458px;
+  // height: 110px;
+  float: left;
+  .title {
+    color: #2f2f2f;
+    margin: 0 0 4px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  .desc {
+    margin: 0 0 4px;
+    font-size: 13px;
+    color: #9999b3;
+    line-height: 24px;
+  }
+`;
+
+export const ListMeta = styled.div`
+  width: 458px;
+  heigth: 20px;
+  color: #b4b4b4;
+
+  .iconfont {
+    line-height: 20px;
+    margin-right: 2px;
+  }
+  .text {
+    margin-right: 10px;
+    font-size: 12px;
+    line-height: 20px;
+    text-decoration: none;
+  }
+  .diamond {
+    color: #ea6f5a;
   }
 `;
