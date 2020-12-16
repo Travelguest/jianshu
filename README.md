@@ -14,6 +14,10 @@
 
 【12.14】实现 Header 中“换一批”功能
 
+【12.15】实现 Topic 样式以及 Home 的 store 建立，同时 Topic 能够从 Home 的 store 来获得数据
+
+【12.16】实现左侧 List
+
 ---
 
 ## 难点总结
