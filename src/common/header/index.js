@@ -50,8 +50,18 @@ class Header extends Component {
           <SearchInfoTitle>
             热门搜索
             <SearchInfoSwitch
-              onClick={() => handleChangePage(page, totalPages)}
+              onClick={() => handleChangePage(page, totalPages, this.spinIcon)}
             >
+              {/*类名都是iconfont，收到放大镜的影响 */}
+              <span
+                // ref可以获取react渲染出的真实DOM结点，使用该结点，来改变其CSS样式
+                ref={(icon) => {
+                  this.spinIcon = icon;
+                }}
+                className="iconfont spin"
+              >
+                &#xe7b8;
+              </span>
               换一批
             </SearchInfoSwitch>
           </SearchInfoTitle>
@@ -71,7 +81,7 @@ class Header extends Component {
   }
 
   render() {
-    const { focus, handleInputFocus, handleInputBlur } = this.props;
+    const { focus, handleInputFocus, handleInputBlur, list } = this.props;
     return (
       <HeaderWrapper>
         <Logo />
@@ -93,12 +103,12 @@ class Header extends Component {
             <CSSTransition in={focus} timeout={300} classNames="slide">
               <NavSearch
                 className={focus ? "focused" : ""}
-                onFocus={handleInputFocus}
+                onFocus={() => handleInputFocus(list)}
                 onBlur={handleInputBlur}
               ></NavSearch>
             </CSSTransition>
             {/* 动画只用于NavSearch中，并不包括iconfont！ */}
-            <span className={focus ? "focused iconfont" : "iconfont"}>
+            <span className={focus ? "focused iconfont zoom" : "iconfont zoom"}>
               &#xe783;
             </span>
             {this.showSearchInfoList()}
@@ -134,8 +144,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleInputFocus() {
-      dispatch(actionCreator.searchList());
+    handleInputFocus(list) {
+      list.size === 0 && dispatch(actionCreator.searchList()); //优化性能：axios请求，初始化时只申请一次即可！
       dispatch(actionCreator.searchFocus());
     },
     handleInputBlur() {
@@ -148,7 +158,15 @@ const mapDispatchToProps = (dispatch) => {
     handleMouseLeave() {
       dispatch(actionCreator.mouseLeave());
     },
-    handleChangePage(page, totalPages) {
+    handleChangePage(page, totalPages, spin) {
+      // spin是ref获取来的DOM结点
+      let originAngle = spin.style.transform.replace(/[^0-9]/gi, ""); //将除0~9以外的数替换为空，g表示全局替换，i表示忽略大小写
+      if (originAngle) {
+        originAngle = parseInt(originAngle, 10);
+      } else {
+        originAngle = 0;
+      }
+      spin.style.transform = "rotate(" + (originAngle + 360) + "deg)";
       if (page < totalPages) {
         dispatch(actionCreator.changePage(page + 1));
       } else {
