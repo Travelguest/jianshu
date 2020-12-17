@@ -1,5 +1,14 @@
 //************这是Home的store里的reducer,其数据存在这*************/
 import { fromJS } from "immutable";
+import * as constants from "./constants";
+import challenge from "../../../statics/recommend/challenge.png";
+import copyright from "../../../statics/recommend/copyright.png";
+import member from "../../../statics/recommend/member.png";
+import serial from "../../../statics/recommend/serial.png";
+import hejiong from "../../../statics/list/hejiong.webp";
+import zheda from "../../../statics/list/zheda.webp";
+import huge1 from "../../../statics/list/huge1.webp";
+import huge2 from "../../../statics/list/huge2.webp";
 
 const defaultState = fromJS({
   topicList: [
@@ -19,41 +28,60 @@ const defaultState = fromJS({
   articleList: [
     {
       id: 1,
-      title: "三毛：你只看到我的潇洒，却不曾读懂我的悲伤",
+      title: "赴耶鲁读研的浙大女生",
       text:
-        "我要是男人，定要找个像三毛一样的女子，给我的生活，带来丰盛的色彩。我要是女人，定要找个像荷西一样的男子，给足我尊严和惊喜。有人常常在我耳...",
-      imgURL:
-        "https://upload-images.jianshu.io/upload_images/1554515-a6b53c4e71afc4b1?imageMogr2/auto-orient/strip|imageView2/2/w/460/format/webp",
+        "即将赴耶鲁大学读硕士的她，在国际顶尖会议上做过学术报告，在田野里为生态保护流过汗水；是前浙大武术队队员，也是校园摇滚乐队主唱。她说：“我要用有限的时间体味生命的无限性。”",
+      imgURL: zheda,
     },
     {
       id: 2,
       title: "胡歌12年后首谈车祸：既然活下来了，就不能白白活着",
       text:
         "生存还是毁灭，这是一个值得思考的问题。默默忍受命运暴虐的毒箭，或是挺身反抗人世无涯的苦难，通过斗争把它们扫清，这两种行为哪种更高贵？死了，睡着了，什么都完了……",
-      imgURL:
-        "https://upload-images.jianshu.io/upload_images/2259045-c55bb2fca8928ac1?imageMogr2/auto-orient/strip|imageView2/2/w/658/format/webp",
+      imgURL: huge1,
     },
     {
       id: 3,
       title: "37岁胡歌的人生观让我明白：成人世界里，请停止低层次的忙碌",
       text:
         "说起胡歌，他身上似乎总有一种神奇的魅力，或因为他谦逊有礼，或因为他温润如云，但我想更为重要的，是因为他的人生观。胡歌曾在采访中说过一件小事。……",
-      imgURL:
-        "https://upload-images.jianshu.io/upload_images/1202579-3822c5d82453f516?imageMogr2/auto-orient/strip|imageView2/2/w/1080/format/webp",
+      imgURL: huge2,
     },
     {
       id: 4,
-      title: "知乎高赞：哪件事每天坚持10分钟，会让你有巨大改变？",
+      title: "何炅曝光疫情宅家日常：我为什么劝你一定要多读书？",
       text:
         "知乎上有个问题：有哪些事情你坚持了3年以上？网友们纷纷留言：“听CNN和BBC，坚持了6年以上”；“每天练字20分钟，练了4年”；“每天出门擦防晒霜，坚持了7年”；",
-      imgURL:
-        "https://upload-images.jianshu.io/upload_images/1554515-a6b53c4e71afc4b1?imageMogr2/auto-orient/strip|imageView2/2/w/460/format/webp",
+      imgURL: hejiong,
     },
   ],
+  recommendList: [
+    {
+      id: 1,
+      imgURL: challenge,
+    },
+    {
+      id: 2,
+      imgURL: member,
+    },
+    {
+      id: 3,
+      imgURL: serial,
+    },
+    {
+      id: 4,
+      imgURL: copyright,
+    },
+  ],
+  focus: false,
 });
 
 export default (state = defaultState, action) => {
   switch (action.type) {
+    case constants.ENTER_QRCODE:
+      return state.set("focus", true); //别忘记return
+    case constants.LEAVE_QRCODE:
+      return state.set("focus", false);
     default:
       return state;
   }

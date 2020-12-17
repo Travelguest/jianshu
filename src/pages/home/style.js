@@ -105,3 +105,65 @@ export const ListMeta = styled.div`
     color: #ea6f5a;
   }
 `;
+
+export const RecommendItem = styled.div`
+  margin-bottom: 0 0 6px;
+  .pig {
+    width: 280px;
+    height: 50px;
+  }
+`;
+
+export const QrCode = styled.a`
+  cursor: pointer;
+  display: block;
+  height: 60px;
+  border: 1px solid #f0f0f0;
+  border-radius: 6px;
+  width: 100%;
+  padding: 10px 22px;
+  margin-bottom: 30px;
+  .qr_pig {
+    vertical-align: middle;
+    border: 0;
+    box-sizing: border-box;
+    width: 60px;
+    height: 60px;
+    opacity: 0.85;
+  }
+`;
+
+export const QrCodeInfo = styled.div`
+  display: inline-block; //关键在于此，转化为行内块才在同一行且可以margin-left生效
+  vertical-align: middle; //垂直居中
+  margin-left: 7px;
+  width: 143px;
+  height: 44px;
+
+  .title {
+    font-size: 16px;
+    color: #333;
+  }
+  .description {
+    margin-top: 4px;
+    font-size: 13px;
+    color: #999;
+  }
+`;
+
+export const QrCodeDetail = styled.div`
+  position: absolute;
+  top: 127px;
+  margin-left: 25px;
+  background: #fff;
+  height: 160px;
+  width: 160px;
+  padding: 10px;
+
+  .pig {
+    width: 160px;
+    height: 160px;
+    border: 0;
+    transition: all 2s ease-in-out;
+  }
+`;
