@@ -1,22 +1,6 @@
 # jianshu
 
-用 React 实现简书网站
-
-——by Dai Yong
-
----
-
-## 开发日志
-
-【12.7】学完廖雪峰 git 教程,在该项目中实践 git
-
-【12.8】引入 immutable.js 来防止改变 state 而不自知
-
-【12.14】实现 Header 中“换一批”功能
-
-【12.15】实现 Topic 样式以及 Home 的 store 建立，同时 Topic 能够从 Home 的 store 来获得数据
-
-【12.16】实现左侧 List
+React学习：实现简书网站
 
 ---
 
